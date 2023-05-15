@@ -66,4 +66,38 @@ public class Calculator {
         System.out.println(currentValue);
     }
 
+    public void startCalculator(){
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        while(running) {
+            String input = scanner.next();
+
+            switch(input) {
+                case "c":
+                    reset();
+                    break;
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                case "^":
+                    updatePreviousValue();
+                    setOperator(input.charAt(0));
+                    break;
+                case "=":
+                    performCalculation();
+                    displayCurrentValue();
+                    break;
+                case "q":
+                    running = false;
+                    break;
+                default:
+                    updateCurrentValue(input);
+                    break;
+            }
+        }
+
+        scanner.close();
+    }
 }
